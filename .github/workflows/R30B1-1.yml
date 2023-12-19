@@ -166,7 +166,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo -e "✅ immortalwrt-mt798x 源码版本，256M运存建议时常重启一次，不然容易出现爆运存导致卡网" >> release.txt
+        echo -e "✅ immortalwrt-mt798x hanwckf 源码版本，256M运存建议时常重启一次，不然容易出现爆运存导致卡网" >> release.txt
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")-clt-r30b1-xiao">> $GITHUB_OUTPUT
         touch release.txt
         echo "clt-r30b1" >> release.txt
