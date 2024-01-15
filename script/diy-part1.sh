@@ -29,3 +29,6 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 #rm -rf luci-theme-argon 
 #git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 #git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
+
+cp -f $GITHUB_WORKSPACE/openwrt/defconfig/mt7981-ax3000-mtwifi-cfg.config $CONFIG_FILE
+echo "CONFIG_PACKAGE_luci-app-smartdns=y" >> $CONFIG_FILE
