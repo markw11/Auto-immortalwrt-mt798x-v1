@@ -31,4 +31,21 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 #git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 
 cp -f $GITHUB_WORKSPACE/openwrt/defconfig/mt7981-ax3000-mtwifi-cfg.config $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_abt_asr3000=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cetron_ct3003=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_a10=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_rax3000m-emmc=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_rax3000m=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_h3c_nx30pro=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_imou_lc-hx3001=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_jcg_q30=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_konka_komi-a31=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_livinet_zr-3020=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_mt7981-360-t7-108M=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_mt7981-clt-r30b1=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t-stock=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-112m=y/d' $CONFIG_FILE
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-stock=y/d' $CONFIG_FILE
+
 echo "CONFIG_PACKAGE_luci-app-smartdns=y" >> $CONFIG_FILE
