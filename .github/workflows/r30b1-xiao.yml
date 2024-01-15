@@ -30,7 +30,7 @@ env:
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/r30b1-xiao.config
-  DIY_P1_SH: script/diy-part1.sh
+  DIY_P1_SH: script/diy-part11.sh
   DIY_P2_SH: script/diy-part2.sh
   DIY_P3_SH: script/github-disk-cleanup.sh
   SSH_ACTIONS: false
@@ -167,7 +167,7 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
         echo -e "✅ immortalwrt-mt798x padavanonly 源码版本，256M运存建议时常重启一次，不然容易出现爆运存导致卡网" >> release.txt
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-clt-r30b1-xiao">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-clt-r30b1-273">> $GITHUB_OUTPUT
         touch release.txt
         echo "clt-r30b1" >> release.txt
         echo "📥 精简固件下载" >> release.txt
