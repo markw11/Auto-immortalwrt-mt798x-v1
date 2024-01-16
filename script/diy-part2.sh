@@ -10,7 +10,7 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 # 修改openwrt登陆地址,把下面的192.168.110.1修改成你想要的就可以了
-sed -i 's/192.168.1.1/192.168.110.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 # 修改主机名字，把R30B1修改你喜欢的就行（不能纯数字或者使用中文）
 sed -i 's/ImmortalWrt/R30B1/g' package/base-files/files/bin/config_generate
@@ -19,13 +19,13 @@ sed -i 's/ImmortalWrt/R30B1/g' package/base-files/files/bin/config_generate
 #sed -i 's/OpenWrt/R30B1_AX3000/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 修改闭源驱动2G wifi名称
-sed -i 's/MT7981_AX3000_2.4G/R30B1_AX3000_2.4G/g' package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b0.dat
-sed -i 's/MT798x_AX3000_2.4G/R30B1_AX3000_2.4G/g' package/mtk/applications/gl-sdk4-mtk-wifi-v2/files/wireless.config
+sed -i 's/MT7981_AX3000_2.4G/PDCN/g' package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b0.dat
+#sed -i 's/MT798x_AX3000_2.4G/R30B1_AX3000_2.4G/g' package/mtk/applications/gl-sdk4-mtk-wifi-v2/files/wireless.config
 #sed -i 's/OpenWRT-2.4G/R30B1_AX3000_2.4G/g' package/mtk/drivers/wifi-profile/files/mt7981/files/lib/wifi/mt_dbdc.sh
 
 # 修改闭源驱动5G wifi名称
-sed -i 's/MT7981_AX3000_5G/R30B1_AX3000_5G/g' package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b1.dat
-sed -i 's/MT798x_AX3000_5G/R30B1_AX3000_5G/g' package/mtk/applications/gl-sdk4-mtk-wifi-v2/files/wireless.config
+sed -i 's/MT7981_AX3000_5G/PDCN/g' package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b1.dat
+#sed -i 's/MT798x_AX3000_5G/R30B1_AX3000_5G/g' package/mtk/applications/gl-sdk4-mtk-wifi-v2/files/wireless.config
 #sed -i 's/OpenWRT-5G/R30B1_AX3000_5G/g' package/mtk/drivers/wifi-profile/files/mt7981/files/lib/wifi/mt_dbdc.sh
 
 # 添加个性信息
@@ -113,7 +113,7 @@ pushd package/community
 #svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-iptvhelper
 
 # add luci-app-pptp-server
-svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-pptp-server
+#svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-pptp-server
 
 # add luci-app-pptpd
 #svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-pptpd
