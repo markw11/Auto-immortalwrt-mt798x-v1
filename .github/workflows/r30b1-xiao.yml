@@ -29,7 +29,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/r30b1-xiao.config
+  CONFIG_FILE: config/r30b1-.config
   DIY_P1_SH: script/diy-part11.sh
   DIY_P2_SH: script/diy-part2.sh
   DIY_P3_SH: script/github-disk-cleanup.sh
@@ -187,7 +187,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.2.1
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 7
+        keep_latest: 99
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -197,5 +197,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
-        retain_days: 1
-        keep_minimum_runs: 3
+        retain_days: 100
+        keep_minimum_runs: 30
