@@ -53,3 +53,6 @@ sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Client=y/d' .
 sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Server=y/d' .config
 
 echo "CONFIG_PACKAGE_luci-app-smartdns=y" >> .config
+echo "CONFIG_PACKAGE_curl=y" >> .config
+echo "CONFIG_PACKAGE_htop=y" >> .config
+
