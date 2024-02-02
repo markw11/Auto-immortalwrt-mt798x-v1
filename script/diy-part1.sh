@@ -47,6 +47,8 @@ sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t=y/
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t-stock=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-112m=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-stock=y/d' .config
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_glinet_gl-mt2500=y/d' .config
+sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_glinet_gl-mt3000=y/d' .config
 
 sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NONE_V2RAY=y/d' .config
 sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Client=y/d' .config
