@@ -42,13 +42,11 @@ sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_jcg_q30=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_konka_komi-a31=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_livinet_zr-3020=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_mt7981-360-t7-108M=y/d' .config
-sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_mt7981-clt-r30b1=y/d' .config
+#sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_mt7981-clt-r30b1=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-ax3000t-stock=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-112m=y/d' .config
 sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_xiaomi_mi-router-wr30u-stock=y/d' .config
-sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7986_DEVICE_ruijie-rg-x60-pro=y/d' .config
-sed -i '/CONFIG_TARGET_DEVICE_mediatek_mt7986_DEVICE_ruijie-rg-x60-pro-stock=y/d' .config
 
 sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NONE_V2RAY=y/d' .config
 sed -i '/CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Client=y/d' .config
