@@ -29,7 +29,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/r30b1-.config
+  CONFIG_FILE: config/r30b1-1.config
   DIY_P1_SH: script/diy-part11.sh
   DIY_P2_SH: script/diy-part2.sh
   DIY_P3_SH: script/github-disk-cleanup.sh
