@@ -173,7 +173,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: jcg-q30-immortalwrt-mt798x固件
+        name: jcg-q30-273-immortalwrt-mt798x固件
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
@@ -181,9 +181,9 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
         echo -e "✅ immortalwrt-mt798x 源码版本" >> release.txt
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-jcg-q30">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-jcg-q30-273">> $GITHUB_OUTPUT
         touch release.txt
-        echo "jcg-q30" >> release.txt
+        echo "jcg-q30-273" >> release.txt
         echo "📥 固件下载" >> release.txt
         echo "status=success" >>$GITHUB_OUTPUT
 
