@@ -24,7 +24,7 @@ on:
 #  schedule:
 #   - cron: 0 20 * * 2
    #   分,时,日,月,星期。每周 三 20时执行一次 (UTC时间)
-# https://github.com/hanwckf/immortalwrt-mt798x https://github.com/padavanonly/immortalwrt-mt798x
+  
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
@@ -32,7 +32,6 @@ env:
   CONFIG_FILE: config/jcg-q30.config
   DIY_P1_SH: script/diy-part1.sh
   DIY_P2_SH: script/diy-part-q30.sh
-  DIY_P3_SH: script/github-disk-cleanup.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -45,13 +44,28 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    - name: 可用磁盘空间清理 (Ubuntu)
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+        
     - name: 准备
       uses: actions/checkout@main
       
-    - name: 清理磁盘空间
+    - name: 检查磁盘空间
       run: |
-        chmod +x script/github-disk-cleanup.sh
-        script/github-disk-cleanup.sh
+           echo "Free space:"
+           df -h
 
     - name: 开始安装编译所需系统
       env:
@@ -65,10 +79,6 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: 检查空间使用情况
-      if: (!cancelled())
-      run: df -hT
-
     - name: 下载固件源码
       working-directory: /workdir
       run: |
@@ -79,7 +89,7 @@ jobs:
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
-        mixkey: 'openwrt212'
+        mixkey: 'openwrt-21.02'
         prefix: ${{ github.workspace }}/openwrt
 
     - name: 加载feeds跟自定义插件
@@ -98,6 +108,10 @@ jobs:
     - name: 加载.config设置
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -d patches/feeds-package-patch ] && mv -f patches/feeds-package-patch openwrt/feeds/packages/feeds-package-patch
+        [ -d patches/feeds-luci-patch ] && mv -f patches/feeds-luci-patch openwrt/feeds/small/feeds-luci-patch
+        # [ -d patches/feeds-app-patch ] && mv -f patches/feeds-app-patch openwrt/feeds/feeds_app/feeds-app-patch
+        [ -d patches/luci-patch ] && mv -f patches/luci-patch openwrt/feeds/luci/luci-patch
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
@@ -114,7 +128,7 @@ jobs:
       run: |
         cd openwrt
         make defconfig
-        make download -j8 V=10
+        make download -j8 V=11
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
@@ -159,22 +173,22 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: r30b1-immortalwrt-mt798x精简固件
+        name: jcg-q30-immortalwrt-mt798x固件
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo -e "✅ immortalwrt-mt798x padavanonly 源码版本" >> release.txt
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-jcg-q30-237">> $GITHUB_OUTPUT
+        echo -e "✅ immortalwrt-mt798x 源码版本" >> release.txt
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-jcg-q30">> $GITHUB_OUTPUT
         touch release.txt
-        echo "clt-r30b1" >> release.txt
-        echo "📥 精简固件下载" >> release.txt
+        echo "jcg-q30" >> release.txt
+        echo "📥 固件下载" >> release.txt
         echo "status=success" >>$GITHUB_OUTPUT
 
     - name: 上传固件到release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -184,18 +198,18 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: 删除旧发布的固件
-      uses: dev-drprasad/delete-older-releases@v0.2.1
+      uses: dev-drprasad/delete-older-releases@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 99
+        keep_latest: 18
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 删除过时工作流程
-      uses: Mattraks/delete-workflow-runs@v2
+      uses: Mattraks/delete-workflow-runs@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
-        retain_days: 100
-        keep_minimum_runs: 30
+        retain_days: 1
+        keep_minimum_runs: 3
