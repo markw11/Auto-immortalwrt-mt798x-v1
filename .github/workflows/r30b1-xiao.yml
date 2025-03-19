@@ -8,7 +8,7 @@
 #修改以下代码或者开启触发开关都好，要严格按格式对好,前面有多少空格也要看清楚
 #代码里有 name: 后面的内容随便改,冒号后面是有个空格的,如果修改固件名字就要考虑能不能显示出你想要的
 
-name: clt-r30b1-237 闭源精简固件
+name: clt-r30b1-23.05 固件
 
 #permissions: write-all
 #开启写权限，防止无法上传到release
@@ -26,8 +26,8 @@ on:
    #   分,时,日,月,星期。每周 三 20时执行一次 (UTC时间)
   
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
+  REPO_BRANCH: openwrt-23.05
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/r30b1-xiao.config
   DIY_P1_SH: script/diy-part1.sh
