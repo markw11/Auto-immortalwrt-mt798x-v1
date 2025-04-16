@@ -8,7 +8,7 @@
 #修改以下代码或者开启触发开关都好，要严格按格式对好,前面有多少空格也要看清楚
 #代码里有 name: 后面的内容随便改,冒号后面是有个空格的,如果修改固件名字就要考虑能不能显示出你想要的
 
-name: clt-r30b1-23.05 固件
+name: 237-23.05 固件
 
 #permissions: write-all
 #开启写权限，防止无法上传到release
@@ -159,7 +159,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: r30b1-immortalwrt-mt798x精简固件
+        name: 23.05-immortalwrt-mt798x精简固件
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
@@ -167,9 +167,9 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
         echo -e "✅ immortalwrt-mt798x 源码版本，256M运存建议时常重启一次，不然容易出现爆运存导致卡网" >> release.txt
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-clt-r30b1-237">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-23.05-237">> $GITHUB_OUTPUT
         touch release.txt
-        echo "clt-r30b1" >> release.txt
+        echo "23.05" >> release.txt
         echo "📥 精简固件下载" >> release.txt
         echo "status=success" >>$GITHUB_OUTPUT
 
